@@ -30,7 +30,7 @@ Last version 6.1.6
 
 To run other application, you need to build data:
 ```javascript
-var sApp = startApp.set({} params [, {} extras]);
+var sApp = cordova["plugins"]["startApp"].set({} params [, {} extras]);
 ```
 | Param       | Description                                                                                                                                                          | Default       | Values                                               |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------------- |
@@ -59,7 +59,7 @@ Extras as a set of key-value:
 _Example_
 
 ```javascript
-var sApp = startApp.set({ /* params */
+var sApp = cordova["plugins"]["startApp"].set({ /* params */
 	"action":"ACTION_MAIN",
 	"category":"CATEGORY_DEFAULT",
 	"type":"text/css",
@@ -74,7 +74,7 @@ var sApp = startApp.set({ /* params */
 });
 ```
 
-```startApp.set()``` return object:
+```cordova["plugins"]["startApp"].set()``` return object:
 ```javascript
 sApp.start(function() { /* success */
 	console.log("OK");
@@ -96,7 +96,7 @@ If success, ```values``` contains data: `versionName`, `packageName`, `versionCo
 
 To get all extra fields use method ```extraFiels```:
 ```javascript
-startApp.extraFields(function(fields) { /* success */
+cordova["plugins"]["startApp"].extraFields(function(fields) { /* success */
 	console.log(fields);
 }, function() { /* fail */
 
@@ -112,7 +112,7 @@ Variable ```fields``` contains object array, example:
 
 To get one extra field use method ```getExtra```:
 ```javascript
-startApp.getExtra(field, function(value) { /* success */
+cordova["plugins"]["startApp"].getExtra(field, function(value) { /* success */
 	console.log(fields);
 }, function() { /* fail */
 
@@ -123,7 +123,7 @@ Variable ```value``` contains String value.
 
 To has one extra field use method ```extraField```:
 ```javascript
-startApp.hasExtra(field, function() { /* success */
+cordova["plugins"]["startApp"].hasExtra(field, function() { /* success */
 	console.log(fields);
 }, function() { /* fail */
 
@@ -135,14 +135,14 @@ Variable ```field``` is a String.
 
 _Set application as only package name_:
 ```js
-var sApp = startApp.set({
+var sApp = cordova["plugins"]["startApp"].set({
 	"application":"com.application.name"
 }).start();
 ```
 
 _Set application as intent value and flag ([issue](https://github.com/zhaozhanzhan/cordova-plugin-startapp-zzz/issues/50))_:
 ```js
-var sApp = startApp.set({
+var sApp = cordova["plugins"]["startApp"].set({
 	"intent": "com.shazam.android.intent.actions.START_TAGGING",
 	"flags": ["FLAG_ACTIVITY_NEW_TASK"]
 }).start();
@@ -150,14 +150,14 @@ var sApp = startApp.set({
 
 _Set application as package and activity_:
 ```js
-var sApp = startApp.set({
+var sApp = cordova["plugins"]["startApp"].set({
 	"component": ["com.app.name","com.app.name.Activity"]
 }).start();
 ```
 
 _Set application as action, package, type and Uri_:
 ```js
-var sApp = startApp.set({ /* params */
+var sApp = cordova["plugins"]["startApp"].set({ /* params */
 	"action":"ACTION_MAIN",
 	"type":"text/css",
 	"package":"cordova-plugin-startapp-zzz",
@@ -169,7 +169,7 @@ var sApp = startApp.set({ /* params */
 _Start application with extra fields_
 
 ```js
-var sApp = startApp.set({ /* params */
+var sApp = cordova["plugins"]["startApp"].set({ /* params */
 	"component": ["com.app.name","com.app.name.Activity"]
 }, { /* extras */
 	"extraKey1":"extraValue1",
@@ -180,7 +180,7 @@ var sApp = startApp.set({ /* params */
 _Start listening broadcast_
 
 ```js
-var sApp = startApp.set(["RECEIVER_NAME"]);
+var sApp = cordova["plugins"]["startApp"].set(["RECEIVER_NAME"]);
 
 sApp.receiver(function(compete) { // if receiver is registered
 	$messages.prepend("<div>id broadcast: " + compete + "</div>");
@@ -194,7 +194,7 @@ sApp.receiver(function(compete) { // if receiver is registered
 _Start application with result_
 
 ```js
-var sApp = startApp.set({
+var sApp = cordova["plugins"]["startApp"].set({
 	"action":"ACTION_MAIN",
 	"package":"cordova-plugin-startapp-zzz",
 	"intentstart":"startActivityForResult",
@@ -211,7 +211,7 @@ sApp.start(function(compete) { // if receiver is registered
 
 _Send broadcast_
 ```js
-var sApp = startApp.set({ /* params */
+var sApp = cordova["plugins"]["startApp"].set({ /* params */
 	"action":"RECEIVER_NAME",
 	"intentstart":"sendBroadcast",
 	"noParseAction": true // disable parse action value
@@ -229,35 +229,35 @@ sApp.start(function(compete) {
 
 Example, call skype:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_VIEW",
 	"uri": "skype:+79109999999"
 }).start();
 ```
 Example, call phone:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_CALL",
 	"uri": "tel:+79109999999"
 }).start();
 ```
 Example, call browser:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_VIEW",
 	"uri": "https://github.com/zhaozhanzhan"
 }).start();
 ```
 Example, call facebook:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_VIEW",
 	"uri": "fb://facewebmodal/f?href=https://www.facebook.com/GitHub"
 }).start();
 ```
 Example, call whatsapp:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_SEND",
 	"package": "com.whatsapp",
 	"type": "text/plain"
@@ -267,7 +267,7 @@ startApp.set({ /* params */
 ```
 Example, call whatsapp chat:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_SEND",
 	"package": "com.whatsapp",
 	"type": "text/plain",
@@ -279,7 +279,7 @@ startApp.set({ /* params */
 ```
 Example, call sms:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_MAIN",
 	"category": "CATEGORY_DEFAULT",
 	"type": "vnd.android-dir/mms-sms"
@@ -287,7 +287,7 @@ startApp.set({ /* params */
 ```
 Example, play mp4 video:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_VIEW",
 	"uri": "http://domain.com/videofile.mp4",
 	"type": "video/mp4"
@@ -295,7 +295,7 @@ startApp.set({ /* params */
 ```
 Example, open contacts book:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_PICK",
 	"uri": "ContactsContract.Contacts.CONTENT_URI",
 	"intentstart":"startActivityForResult"
@@ -303,13 +303,13 @@ startApp.set({ /* params */
 ```
 Example, open twitter:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"application": "com.twitter.android"
 }).start();
 ```
 Example, open twitter user:
 ```js
-startApp.set({ /* params */
+cordova["plugins"]["startApp"].set({ /* params */
 	"action": "ACTION_VIEW", 
 	"uri": "https://twitter.com/kremlinrussia"
 }).start();
@@ -317,7 +317,7 @@ startApp.set({ /* params */
 
 Example, add alarm to alarm manager: 
 ```js
-var sApp = startApp.set({ /* params */
+var sApp = cordova["plugins"]["startApp"].set({ /* params */
     "action":"android.intent.action.SET_ALARM",
     "noParseAction": true
 }, {
@@ -338,7 +338,7 @@ Use **iOS**
 _Set iOS application_
 
 ```js
-var sApp = startApp.set("twitter://");
+var sApp = cordova["plugins"]["startApp"].set("twitter://");
 ```
 
 return ```startApp``` object:
